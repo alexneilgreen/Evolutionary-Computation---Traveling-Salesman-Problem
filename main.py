@@ -1,4 +1,8 @@
 """This file contains the genetic algorithms, distance calculations, and data loading functions"""
+# References
+#? https://deap.readthedocs.io/en/master/api/tools.html
+#? https://deap.readthedocs.io/en/master/api/tools.html#deap.tools.cxOrdered
+#? Inversion Mutation - Textbook Pages 69-70
 
 # Standard libraries or third-party packages
 import argparse
@@ -75,6 +79,14 @@ def distance_matrix(coords):
 
     return matrix
 
+# Inversion Mutation
+def inversion_mutation(individual, indpb):
+    if random.random() < indpb:
+        size = len(individual)
+        a, b = sorted(random.sample(range(size), 2))    # Randomly pick two distinct positions
+        individual[a:b] = individual[a:b][::-1]         # Reverse the order within those positions
+    return (individual,)
+
 # Genetic Algorithm
 def run(distance, n_cities):
     # Set Random Seed
@@ -97,7 +109,7 @@ def run(distance, n_cities):
     toolbox.register("population", tools.initRepeat,  list, toolbox.individual)
     toolbox.register("evaluate", evaluate)
     toolbox.register("mate", tools.cxOrdered)
-    toolbox.register("mutate", tools.mutInversion)  
+    toolbox.register("mutate", inversion_mutation, indpb=0.825)  
     toolbox.register("select", tools.selTournament, tournsize=TRN)
 
     best_route = tools.HallOfFame(1)    # Keep the single best individual route
@@ -108,6 +120,9 @@ def run(distance, n_cities):
     for ind, fit in zip(pop, fitnesses):
         ind.fitness.values = fit
     best_route.update(pop)
+
+    # Saved for Plotting
+    best_per_gen = []
 
     # Evolution loop
     for gen in range (1, (GEN+1)):
@@ -139,9 +154,11 @@ def run(distance, n_cities):
         pop[:] = offspring
         best_route.update(pop)
 
+        best_per_gen.append(best_route[0].fitness.values[0])
+
     best_tour = list(best_route[0])
     best_distance = best_route[0].fitness.values[0]
-    return best_tour, best_distance
+    return best_tour, best_distance, best_per_gen
 
 def main():
 
@@ -167,13 +184,16 @@ def main():
     # Build Distance Matrix
     distances = distance_matrix(coords)
 
-    best_tour, best_distance = run(distances, n_cities)
+    best_tour, best_distance, best_per_gen = run(distances, n_cities)
 
     # Log Results
     utility.log(f"\n\tBest Tour:")
     for order, idx in enumerate(best_tour, start=1):
         utility.log(f"\n\t\t  {order:>2}. {cities[idx]}")
     utility.log(f"\n\tBest Distance = {best_distance:,.4f} miles")
+
+    # Plot Fitness over Generations
+    utility.plot_fitness(best_per_gen)
 
     # Save Results to CSV
     utility.save_tour_csv(best_tour, cities, best_distance)
