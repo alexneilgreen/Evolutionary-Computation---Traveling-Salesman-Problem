@@ -1,0 +1,52 @@
+
+	Best Tour:
+		   1. Hartford, CT
+		   2. Trenton, NJ
+		   3. Dover, DE
+		   4. Annapolis, MD
+		   5. Washington, DC
+		   6. Richmond, VA
+		   7. Raleigh, NC
+		   8. Columbia, SC
+		   9. Atlanta, GA
+		  10. Tallahassee, FL
+		  11. Montgomery, AL
+		  12. Jackson, MS
+		  13. Baton Rouge, LA
+		  14. Austin, TX
+		  15. Santa Fe, NM
+		  16. Phoenix, AZ
+		  17. Carson City, NV
+		  18. Sacramento, CA
+		  19. Salem, OR
+		  20. Olympia, WA
+		  21. Boise, ID
+		  22. Helena, MT
+		  23. Salt Lake City, UT
+		  24. Denver, CO
+		  25. Cheyenne, WY
+		  26. Pierre, SD
+		  27. Bismarck, ND
+		  28. Saint Paul, MN
+		  29. Des Moines, IA
+		  30. Lincoln, NE
+		  31. Topeka, KS
+		  32. Oklahoma City, OK
+		  33. Little Rock, AR
+		  34. Nashville, TN
+		  35. Frankfort, KY
+		  36. Indianapolis, IN
+		  37. Springfield, IL
+		  38. Jefferson City, MO
+		  39. Madison, WI
+		  40. Lansing, MI
+		  41. Columbus, OH
+		  42. Charleston, WV
+		  43. Harrisburg, PA
+		  44. Albany, NY
+		  45. Montpelier, VT
+		  46. Augusta, ME
+		  47. Concord, NH
+		  48. Boston, MA
+		  49. Providence, RI
+	Best Distance = 10,869.7837 miles
