@@ -195,6 +195,9 @@ def main():
     # Plot Fitness over Generations
     utility.plot_fitness(best_per_gen)
 
+    # Plot Best Tour
+    utility.plot_tour(best_tour, coords)
+    
     # Save Results to CSV
     utility.save_tour_csv(best_tour, cities, best_distance)
 
